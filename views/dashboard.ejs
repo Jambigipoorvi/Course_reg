@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 40px 36px;
+      max-width: 420px;
+      width: 90vw;
+      text-align: center;
+    }
+    h2 {
+      color: #232946;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      letter-spacing: 0.5px;
+    }
+    .nav-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .btn {
+      background: linear-gradient(to right, #6366f1, #8360c3);
+      color: white;
+      border: none;
+      padding: 15px 26px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(98,142,255,0.07);
+      transition: background 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: linear-gradient(to right, #4f46e5, #6b46c1);
+    }
+    .success-msg, .error-msg {
+      margin-bottom: 20px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .success-msg { background-color: #d1fae5; color: #065f46; }
+    .error-msg { background-color: #fee2e2; color: #991b1b; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <% if (success_msg) { %>
+      <div class="success-msg"><%= success_msg %></div>
+    <% } %>
+    <% if (error_msg) { %>
+      <div class="error-msg"><%= error_msg %></div>
+    <% } %>
+
+    <h2>Welcome, <%= name %>!</h2>
+
+    <div class="nav-btns">
+      <a href="/courses" class="btn">View All Courses</a>
+      <a href="/my-courses" class="btn">My Courses</a>
+      <a href="/logout" class="btn">Logout</a>
+    </div>
+  </div>
+</body>
+</html>

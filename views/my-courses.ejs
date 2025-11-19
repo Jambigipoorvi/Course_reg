@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Courses</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      margin: 48px auto;
+      padding: 40px 36px;
+      max-width: 600px;
+      text-align: center;
+    }
+    h2 {
+      color: #232946;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      letter-spacing: 0.5px;
+    }
+    ul.cards {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul.cards li {
+      background: #eef2ff;
+      border-radius: 12px;
+      padding: 24px 20px;
+      margin-bottom: 24px;
+      text-align: left;
+      box-shadow: 0 2px 12px rgba(100,116,139,0.08);
+      font-size: 1.1rem;
+      position: relative;
+    }
+    .btn {
+      background: linear-gradient(to right, #6366f1, #8360c3);
+      color: white;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(98,142,255,0.07);
+      transition: background 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 12px;
+    }
+    .btn:hover {
+      background: linear-gradient(to right, #4f46e5, #6b46c1);
+    }
+    form {
+      display: inline;
+      position: absolute;
+      right: 20px;
+      top: 24px;
+    }
+    .nav-btns {
+      margin-top: 24px;
+    }
+    .no-courses-msg {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #4a5568;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <% if (success_msg) { %>
+      <div class="success-msg"><%= success_msg %></div>
+    <% } %>
+    <% if (error_msg) { %>
+      <div class="error-msg"><%= error_msg %></div>
+    <% } %>
+
+    <h2>My Registered Courses</h2>
+
+    <% if (courses.length === 0) { %>
+      <p class="no-courses-msg">You have not registered for any courses yet.</p>
+    <% } else { %>
+      <ul class="cards">
+        <% courses.forEach(course => { %>
+          <li>
+            <strong><%= course.courseName %></strong> (<%= course.courseId %>)<br>
+            <p><%= course.description %></p>
+            <form action="/unregister-course" method="POST">
+              <input type="hidden" name="courseId" value="<%= course.courseId %>">
+              <button type="submit" class="btn">Unregister</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <div class="nav-btns">
+      <a href="/dashboard" class="btn">Dashboard</a>
+      <a href="/logout" class="btn">Logout</a>
+    </div>
+  </div>
+</body>
+</html>
